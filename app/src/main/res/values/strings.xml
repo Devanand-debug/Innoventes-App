@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Innoventes App</string>
+    <string name="next">Next</string>
+    <string name="enter_pan_card_number">Enter PAN Card Number</string>
+    <string name="dd">DD</string>
+    <string name="mm">MM</string>
+    <string name="yyyy">YYYY</string>
+</resources>
