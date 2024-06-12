@@ -9,14 +9,22 @@ import kotlinx.coroutines.launch
 
 class UserInputViewModel(private val repository: UserRepository) : ViewModel() {
 
-        private val _validationResult = MutableLiveData<String>()
-        val validationResult: LiveData<String> get() = _validationResult
+    private val _validationResult = MutableLiveData<String>()
+    val validationResult: LiveData<String> get() = _validationResult
 
-        fun validateUserInput(pan: String, day: String, month: String, year: String) {
-            viewModelScope.launch {
-                val isValid = repository.validateInput(pan, day, month, year)
-                _validationResult.value = if (isValid) "Valid input" else "Invalid input"
-            }
-        }
+    private val _isNextButtonVisible = MutableLiveData<Boolean>()
+    val isNextButtonVisible: LiveData<Boolean> get() = _isNextButtonVisible
 
+    init {
+        _isNextButtonVisible.value = false
     }
+
+    fun validateUserInput(pan: String, day: String, month: String, year: String) {
+        viewModelScope.launch {
+            val isValid = repository.validateInput(pan, day, month, year)
+            _isNextButtonVisible.value = isValid
+            _validationResult.value = if (isValid) "Valid input" else "Invalid input"
+        }
+    }
+
+}
