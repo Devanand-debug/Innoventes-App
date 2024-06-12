@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.isNextButtonVisible.observe(this, Observer {isVisible ->
-            binding.btnNext.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+            binding.btnNext.isEnabled = if (isVisible) true else false
 
         })
 
@@ -58,7 +58,11 @@ class MainActivity : AppCompatActivity() {
 
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                validateInputs()
+                if (s?.isNotEmpty() == true){
+                    binding.etDay.setBackgroundResource(R.drawable.dob_border)
+                    validateInputs()
+                }
+
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -77,6 +81,9 @@ class MainActivity : AppCompatActivity() {
                 if (s?.length == 2) {
                     binding.etMonth.requestFocus()
                 }
+//                if (s?.isNotEmpty() == true){
+//                    binding.etDay.setBackgroundResource(R.drawable.dob_border)
+//                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
