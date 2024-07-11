@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devanand.innoventesapp.model.UserInput
 import com.devanand.innoventesapp.repository.UserRepository
 import kotlinx.coroutines.launch
 
@@ -20,8 +21,10 @@ class UserInputViewModel(private val repository: UserRepository) : ViewModel() {
     }
 
     fun validateUserInput(pan: String, day: String, month: String, year: String) {
+   // fun validateUserInput(userInput: UserInput) {
         viewModelScope.launch {
             val isValid = repository.validateInput(pan, day, month, year)
+           // val isValid = repository.validateInput(userInput)
             _isNextButtonVisible.value = isValid
             _validationResult.value = if (isValid) "Valid input" else "Invalid input"
         }

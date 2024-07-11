@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import com.devanand.innoventesapp.databinding.ActivityMainBinding
 import com.devanand.innoventesapp.factory.UserInputViewModelFactory
+import com.devanand.innoventesapp.model.UserInput
 import com.devanand.innoventesapp.repository.UserRepository
 import com.devanand.innoventesapp.viewmodel.UserInputViewModel
 
@@ -118,6 +119,8 @@ class MainActivity : AppCompatActivity() {
         val month = binding.etMonth.text.toString().trim()
         val year = binding.etYear.text.toString().trim()
 
+       // val userInput = UserInput(pan,day,month,year)
         viewModel.validateUserInput(pan,day,month,year)
+       // viewModel.validateUserInput(userInput)
     }
 }
